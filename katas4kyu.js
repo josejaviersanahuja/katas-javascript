@@ -274,4 +274,160 @@ function isInteresting(number, awesomePhrases) {
   }
   return 0;
 }
-console.log(isInteresting(98, [1337, 256]));
+
+/**
+ * Your task in this Kata is to emulate text justification in monospace font. 
+ * You will be given a single-lined text and the expected justification width. 
+ * The longest word will never be greater than this width.
+
+Here are the rules:
+
+Use spaces to fill in the gaps between words.
+Each line should contain as many words as possible.
+Use '\n' to separate lines.
+Gap between words can't differ by more than one space.
+Lines should end with a word not a space.
+'\n' is not included in the length of a line.
+Large gaps go first, then smaller ones ('Lorem--ipsum--dolor--sit-amet,' (2, 2, 2, 1 spaces)).
+Last line should not be justified, use only one space between words.
+Last line should not contain '\n'
+Strings with one word do not need gaps ('somelongword\n').
+Example with width=30:
+
+Lorem  ipsum  dolor  sit amet,
+consectetur  adipiscing  elit.
+Vestibulum    sagittis   dolor
+mauris,  at  elementum  ligula
+tempor  eget.  In quis rhoncus
+nunc,  at  aliquet orci. Fusce
+at   dolor   sit   amet  felis
+suscipit   tristique.   Nam  a
+imperdiet   tellus.  Nulla  eu
+vestibulum    urna.    Vivamus
+tincidunt  suscipit  enim, nec
+ultrices   nisi  volutpat  ac.
+Maecenas   sit   amet  lacinia
+arcu,  non dictum justo. Donec
+sed  quam  vel  risus faucibus
+euismod.  Suspendisse  rhoncus
+rhoncus  felis  at  fermentum.
+Donec lorem magna, ultricies a
+nunc    sit    amet,   blandit
+fringilla  nunc. In vestibulum
+velit    ac    felis   rhoncus
+pellentesque. Mauris at tellus
+enim.  Aliquam eleifend tempus
+dapibus. Pellentesque commodo,
+nisi    sit   amet   hendrerit
+fringilla,   ante  odio  porta
+lacus,   ut   elementum  justo
+nulla et dolor.
+Also you can always take a look at how justification works in your text editor or directly in HTML (css: text-align: justify).
+
+Have fun :)
+
+
+ * @param {String} text 
+ * @param {Number} width 
+ * @returns 
+ */
+function justify(text, width) {
+  if(text.length <= width) return text;
+  const words = text.split(' ');
+  const lines = [];
+  let currentLine = [];
+  let currentLineLength = 0;
+  for(let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if(currentLineLength + word.length < width) {
+      currentLine.push(word);
+      currentLineLength += i === 0 ? word.length : word.length + 1;
+    } else {
+      lines.push(currentLine);
+      currentLine = [word];
+      currentLineLength = word.length;
+    }
+  }
+  lines.push(currentLine);
+  const justifiedLines = lines.map((line, index) => {
+    if(index === lines.length - 1) {
+      return line.join(' ');
+    }
+    const lineLength = line.join('').length;
+    const spaces = width - lineLength;
+    const spacesPerWord = Math.floor(spaces / (line.length - 1));
+    const extraSpaces = spaces % (line.length - 1);
+    const spacesArray = new Array(line.length - 1).fill(spacesPerWord);
+    for(let i = 0; i < extraSpaces; i++) {
+      spacesArray[i]++;
+    }
+    return line.map((word, index) => {
+      if(index === line.length - 1) {
+        return word;
+      }
+      return word + ' '.repeat(spacesArray[index]);
+    }).join('');
+  });
+  console.log(justifiedLines);
+  return justifiedLines.join('\n');
+}
+const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sagittis dolor mauris, at elementum ligula tempor eget. In quis rhoncus nunc, at aliquet orci. Fusce at dolor sit amet felis suscipit tristique. Nam a imperdiet tellus. Nulla eu vestibulum urna. Vivamus tincidunt suscipit enim, nec ultrices nisi volutpat ac. Maecenas sit amet lacinia arcu, non dictum justo. Donec sed quam vel risus faucibus euismod. Suspendisse rhoncus rhoncus felis at fermentum. Donec lorem magna, ultricies a nunc sit amet, blandit fringilla nunc. In vestibulum velit ac felis rhoncus pellentesque. Mauris at tellus enim. Aliquam eleifend tempus dapibus. Pellentesque commodo, nisi sit amet hendrerit fringilla, ante odio porta lacus, ut elementum justo nulla et dolor.';
+
+/**
+ * In mathematics, the factorial of integer n is written as n!. 
+ * It is equal to the product of n and every integer preceding it. 
+ * For example: 5! = 1 x 2 x 3 x 4 x 5 = 120
+
+Your mission is simple: write a function that takes an integer n and returns the value of n!.
+
+You are guaranteed an integer argument. 
+For any values outside the non-negative range, return null, nil or None (return an empty string "" in C and C++). 
+For non-negative numbers a full length number is expected for example, return 25! =  "15511210043330985984000000"  as a string.
+
+For more on factorials, see http://en.wikipedia.org/wiki/Factorial
+
+NOTES:
+
+The use of BigInteger or BigNumber functions has been disabled, this requires a complex solution
+
+I have removed the use of require in the javascript language.
+ * @param {Number} n 
+ */
+function factorial(n){
+  if(n < 0) return null;
+  let result = 1;
+  const multiply = (a, b) => {
+    const aArray = a.toString().split('').reverse();
+    const bArray = b.toString().split('').reverse();
+    const resultArray = [];
+    for(let i = 0; i < aArray.length; i++) {
+      for(let j = 0; j < bArray.length; j++) {
+        const index = i + j;
+        const product = aArray[i] * bArray[j];
+        if(resultArray[index]) {
+          resultArray[index] += product;
+        } else {
+          resultArray[index] = product;
+        }
+      }
+    }
+    for(let i = 0; i < resultArray.length; i++) {
+      const number = resultArray[i];
+      const ones = number % 10;
+      const tens = Math.floor(number / 10);
+      resultArray[i] = ones;
+      if(resultArray[i + 1]) {
+        resultArray[i + 1] += tens;
+      } else if(tens !== 0) {
+        resultArray[i + 1] = tens;
+      }
+    }
+    return resultArray.reverse().join('');
+  }
+  for(let i = 1; i <= n; i++) {
+    result = multiply(result, i);
+  }
+  return result;
+}
+
+console.log(multiply(120,6)); // 120
