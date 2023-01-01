@@ -501,3 +501,52 @@ var Sudoku = function(data)
 };
 
 console.log(Sudoku([ [ true ] ]).isValid());
+
+
+/**
+ * Complete the function/method (depending on the language) to return true/True when its argument is an array that has the same nesting structures and same corresponding length of nested arrays as the first array.
+
+For example:
+
+ // should return true
+[ 1, 1, 1 ].sameStructureAs( [ 2, 2, 2 ] );          
+[ 1, [ 1, 1 ] ].sameStructureAs( [ 2, [ 2, 2 ] ] );  
+
+ // should return false 
+[ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2, 2 ], 2 ] );  
+[ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2 ], 2 ] );  
+
+// should return true
+[ [ [ ], [ ] ] ].sameStructureAs( [ [ [ ], [ ] ] ] ); 
+
+// should return false
+[ [ [ ], [ ] ] ].sameStructureAs( [ [ 1, 1 ] ] );    
+ * @param {any[]} other 
+ */
+Array.prototype.sameStructureAs = function (other) {
+  // Return 'true' if and only if 'other' has the same
+  // nesting structure as 'this'.
+
+  // Note: You are given a function isArray(o) that returns
+  // whether its argument is an array.
+  const mappingArrays = (arr) => {
+    if (!Array.isArray(arr)) {
+      return false;
+    }
+    const result = [];
+    for (let index = 0; index < arr.length; index++) {
+      const element = arr[index];
+      if (Array.isArray(element)) {
+        result.push(mappingArrays(element));
+      } else {
+        result.push(1);
+      }
+    }
+    return result;
+  }
+
+  const thisArray = mappingArrays(this);
+  const otherArray = mappingArrays(other);
+  return JSON.stringify(thisArray) === JSON.stringify(otherArray);
+};
+console.log([[1, 1, 1]].sameStructureAs([[2, 2, 2]])); // true
