@@ -1,0 +1,2 @@
+payment_intent, client_secret, status
+error.payment_intent.id, error.payment_intent.client_secret, error.payment_intent.status

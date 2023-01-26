@@ -1,0 +1,2 @@
+payment_intent, client_secret, status, nombre, nombre_internacional, web, comentario, empresa_logo, pais_id
+error.payment_intent.id, error.payment_intent.client_secret, error.payment_intent.status, data.newEmpresa.nombre, data.newEmpresa.nombre_internacional, data.newEmpresa.web, data.newEmpresa.comentario, data.newEmpresa.empresa_logo, data.newEmpresa.pais_id

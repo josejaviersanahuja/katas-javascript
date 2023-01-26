@@ -1,0 +1,2 @@
+payment_intent,                 client_secret,    type,             amount, created, canceled_at, cancellation_reason, payment_method, status, message, doc_url, request_log_url
+error.payment_intent.id, error.payment_intent.client_secret, error.type, error.payment_intent.amount, error.payment_intent.created, error.payment_intent.canceled_at, error.payment_intent.cancellation_reason, error.payment_intent.payment_method, error.payment_intent.status, error.message, error.doc_url, error.request_log_url

@@ -1,0 +1,72 @@
+[
+  {
+    "clientSecret": "pi_3MTYadEXOJa4w8qu0K4SpqfS_secret_3oqp3nqZHu1guVjWi8BA8JqSy",
+    "id": "pi_3MTYadEXOJa4w8qu0K4SpqfS",
+    "payment_method": "pm_1MTYawEXOJa4w8qur6BtRHJX"
+  },
+  {
+    "clientSecret": "pi_3MTYadEXOJa4w8qu0K4SpqfS_secret_3oqp3nqZHu1guVjWi8BA8JqSy",
+    "id": "pi_3MTYadEXOJa4w8qu0K4SpqfS",
+    "payment_method": "pm_1MTYawEXOJa4w8qur6BtRHJX"
+  },
+
+  {
+    "data": {
+      "newEmpresa": {
+        "nombre": "Pedro Manuel",
+        "nombre_internacional": "ersf",
+        "web": "asdf",
+        "comentario": "",
+        "empresa_logo": "https://dwqufyl73c7x2.cloudfront.net/test-logosEmpresas/6f9abdad-f08a-426f-b81e-e4db1e6a6f3a.png",
+        "pais_id": 12
+      },
+      "activities": [ ["Object"] ],
+      "acciones": [],
+      "invoiceForm": {
+        "name": "J Sanahuja Ortiz",
+        "vat": "3425",
+        "address": "Calle Unamuno, Urb. Los Cardones",
+        "town": "San Isidro, Granadilla",
+        "zip": "38611",
+        "country": 70,
+        "email": "",
+        "phone": "",
+        "comment": "",
+        "languagePreference": ""
+      }
+    },
+    "error": {
+      "type": "invalid_request_error",
+      "code": "payment_intent_unexpected_state",
+      "doc_url": "https://stripe.com/docs/error-codes/payment-intent-unexpected-state",
+      "message": "Se ha producido un error de procesamiento.",
+      "payment_intent": {
+        "id": "pi_3MTYpoEXOJa4w8qu0mKKqiyD",
+        "object": "payment_intent",
+        "amount": 100000,
+        "amount_details": ["Object"],
+        "automatic_payment_methods": ["Object"],
+        "canceled_at": null,
+        "cancellation_reason": null,
+        "capture_method": "automatic",
+        "client_secret": "pi_3MTYpoEXOJa4w8qu0mKKqiyD_secret_2EXeecq6fv68O0OTnhq5a8YBW",
+        "confirmation_method": "automatic",
+        "created": 1674514192,
+        "currency": "eur",
+        "description": null,
+        "last_payment_error": null,
+        "livemode": false,
+        "next_action": null,
+        "payment_method": "pm_1MTYq2EXOJa4w8quMqXmfLX6",
+        "payment_method_types": ["Array"],
+        "processing": null,
+        "receipt_email": null,
+        "setup_future_usage": null,
+        "shipping": null,
+        "source": null,
+        "status": "succeeded"
+      },
+      "request_log_url": "https://dashboard.stripe.com/test/logs/req_ar5sR9lT2xISzt?t=1674514388"
+    }
+  }
+]
